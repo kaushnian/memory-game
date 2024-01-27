@@ -23,6 +23,13 @@ export default function GameBoard() {
     // Do nothing if an open cell is clicked
     if (cells[index].open) return;
 
+    // Open the clicked cell
+    setCells(currentCells => {
+      const newCells = clone(currentCells);
+      newCells[index].open = true;
+      return newCells;
+    });
+
     // First cell is closed
     if (firstOpenIndex === -1) {
       setFirstOpenIndex(index);
@@ -48,13 +55,6 @@ export default function GameBoard() {
         });
       }, 1000);
     }
-
-    // Open the clicked cell
-    setCells(currentCells => {
-      const newCells = clone(currentCells);
-      newCells[index].open = true;
-      return newCells;
-    });
   };
 
   return (
